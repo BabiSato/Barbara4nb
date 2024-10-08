@@ -13,13 +13,13 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-export const addUser = async (req: Request, res: Response) => {
-  const { name, email } = req.body;
+  export const addUser = async (req: Request, res: Response) => {
+    const { name, email } = req.body;
 
-  try {
-    const user = await userService.createUser(name, email);
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
+    try {
+      const user = await userService.createUser(name, email);
+      res.status(201).json(user);
+    } catch (err) {
+      res.status(400).json({ error: (err as Error).message }); 
+    } // Missing closing curly brace
+  };
