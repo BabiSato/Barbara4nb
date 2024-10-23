@@ -1,4 +1,4 @@
-import { UserRepository } from '../repositories/userRepository'; // Import the UserRepository class
+import { UserRepository } from '../repositories/userRepository';
 import { isValidEmail, isValidName } from '../helpers/validationHelper';
 
 export class UserService {  
@@ -8,17 +8,17 @@ export class UserService {
     this.userRepository = new UserRepository();
   }
 
-  async createUser(name: string, email: string) {
+  async createUser(name: string, email: string, password: string) {
     if (!isValidName(name)) {
       throw new Error('Nome inválido');
     }
     if (!isValidEmail(email)) {
       throw new Error('Email inválido');
     }
-    return await this.userRepository.addUser(name, email);
+    return await this.userRepository.addUser(name, email, password);
   }
 
-  async listUsers() {
-    return await this.userRepository.getAllUsers();
+  async listUsers() {    
+    return await this.userRepository.getAllUsers();  
   }
 }
